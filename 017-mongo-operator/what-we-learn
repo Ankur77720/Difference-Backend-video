@@ -1,0 +1,10 @@
+insertMany
+lt
+lte
+gt
+gte
+in
+nin
+exists
+or
+sample
