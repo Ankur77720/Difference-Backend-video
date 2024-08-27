@@ -1,5 +1,5 @@
 {
-  "name": "019-relationship-mongo-reference",
+  "name": "019-referencing-mongo",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,6 @@
   "description": "",
   "dependencies": {
     "express": "^4.19.2",
-    "mongoose": "^8.5.2",
-    "nodemon": "^3.1.4"
+    "mongoose": "^8.5.4"
   }
 }
