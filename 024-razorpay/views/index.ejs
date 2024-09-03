@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Razorpay Integration</title>
+    <link
+        rel='stylesheet'
+        href='/stylesheets/style.css'
+    />
+</head>
+
+<body>
+    <h1>Razorpay Integration</h1>
+    <p>Welcome to Razorpay Integration</p>
+
+    <button id="rzp-button1">Pay with Razorpay</button>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById('rzp-button1').onclick = function (e) {
+            axios.post('/create/orderId')
+                .then(function (response) {
+                    var options = {
+                        "key": "rzp_test_cAa3gCF0eP8i4R", // Enter the Key ID generated from the Dashboard
+                        "amount": response.data.amount, // Amount in currency subunits. Default currency is INR.
+                        "currency": response.data.currency,
+                        "name": "Laxmi chit fund",
+                        "description": "Test Transaction",
+                        "image": "https://example.com/your_logo",
+                        "order_id": response.data.id,
+                        "handler": function (response) {
+                            axios.post('/api/payment/verify', {
+                                razorpayOrderId: response.razorpay_order_id,
+                                razorpayPaymentId: response.razorpay_payment_id,
+                                signature: response.razorpay_signature
+                            })
+                                .then(function (response) {
+                                    alert('Payment verified successfully');
+                                })
+                                .catch(function (error) {
+                                    console.error(error);
+                                });
+                        },
+                        "prefill": {
+                            "name": "Gaurav Kumar",
+                            "email": "gaurav.kumar@example.com",
+                            "contact": "8989898989"
+                        },
+                        "notes": {
+                            "address": "Razorpay Corporate Office"
+                        },
+                        "theme": {
+                            "color": "#3399cc"
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.on('payment.failed', function (response) {
+                        alert('Payment Failed');
+                        alert('Error Code: ' + response.error.code);
+                        alert('Description: ' + response.error.description);
+                        alert('Source: ' + response.error.source);
+                        alert('Step: ' + response.error.step);
+                        alert('Reason: ' + response.error.reason);
+                        alert('Order ID: ' + response.error.metadata.order_id);
+                        alert('Payment ID: ' + response.error.metadata.payment_id);
+                    });
+                    rzp1.open();
+                    e.preventDefault();
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        };
+    </script>
+</body>
+
+</html>
