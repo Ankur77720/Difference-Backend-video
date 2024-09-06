@@ -33,10 +33,11 @@ npm install express passport passport-google-oauth20 express-session dotenv
 
 1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
 2. Create a new project.
-3. Navigate to **APIs & Services > Credentials**.
-4. Click on **Create Credentials** and select **OAuth 2.0 Client IDs**.
-5. Configure the OAuth consent screen (if not already done).
-6. Set the **Authorized redirect URIs** to:
+3. Navigate to **APIs & Services**
+4. Configure the OAuth consent screen (if not already done).
+5. Navigate to **Credentials**.
+6. Click on **Create Credentials** and select **OAuth 2.0 Client IDs**.
+7. Set the **Authorized redirect URIs** to:
 
    ```
    http://localhost:3000/auth/google/callback
