@@ -1,0 +1,19 @@
+{
+  "name": "025-googleoauth",
+  "version": "1.0.0",
+  "description": "This guide will walk you through setting up Google Authentication in a Node.js application using Passport.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  }
+}
